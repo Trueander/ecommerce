@@ -1,0 +1,238 @@
+<nav class="navbar bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand"><img src="../../../assets/logo.jpg" alt="" width="70px" height="70px"></a>
+      <div class="d-flex" role="search">
+        <button class="btn bg-danger bg-opacity-50 text-white" (click)="activarCarrito()" type="submit"><img src="../../../assets/shopping-cart.svg" class="me-2" alt="">{{venta.items.length}}</button>
+      </div>
+    </div>
+  </nav>
+
+  <div *ngIf="formActivo" class="container card py-3 px-4 mt-3" style="width: 500px">
+    <h4>Realizar pedido</h4>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Nombre <span class="text-danger">*</span></label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="nombresCliente" [(ngModel)]="venta.nombresCliente" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Apellidos destinatario <span class="text-danger">*</span></label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="apellidosCliente" [(ngModel)]="venta.apellidosCliente" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Teléfono <span class="text-danger">*</span></label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="telefonoCliente" [(ngModel)]="venta.telefonoCliente" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Empresa destino</label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="empresaDestino" [(ngModel)]="venta.empresaDestino" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Calle <span class="text-danger">*</span></label>
+        <div class="col-sm-3" >
+          <input type="text" class="form-control" name="nombnombreCallere" [(ngModel)]="venta.nombreCalle" >
+        </div>
+        <div class="col-sm-3" >
+            <input type="text" class="form-control" name="nombnombreCallere" [(ngModel)]="venta.intCalle" >
+          </div>
+      </div>
+      
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Número <span class="text-danger">*</span></label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="numeroCalle" [(ngModel)]="venta.numeroCalle" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Referencia</label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="referencia" [(ngModel)]="venta.referencia" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Colonia <span class="text-danger">*</span></label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="nocoloniambre" [(ngModel)]="venta.colonia" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Código postal <span class="text-danger">*</span></label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="codigoPostal" [(ngModel)]="venta.codigoPostal" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Ciudad <span class="text-danger">*</span></label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="ciudad" [(ngModel)]="venta.ciudad" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Estado <span class="text-danger">*</span></label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="estado" [(ngModel)]="venta.estado" >
+        </div>
+      </div>
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">País</label>
+        <div class="col-sm-6" >
+          <input type="text" class="form-control" name="pais" [(ngModel)]="venta.pais" disabled>
+        </div>
+      </div>
+      <button class="btn bg-danger bg-opacity-50 text-white mt-2" (click)="realizarVenta()">Realizar pedido</button>
+      <button class="btn bg-secondary bg-opacity-50 text-white mt-2" (click)="activarCarrito()">Regresar al carrito</button>
+      
+  </div>
+
+
+
+  <div *ngIf="carritoActivo && !formActivo">
+    <div class="container">
+        <div class="col-md-12 m-sm-auto col-lg-10 pt-5">
+          <div class="container h-100 mt-5" *ngIf="venta.items.length == 0">
+            <div class="row justify-content-center h-100">
+              <div class="col-sm-8 align-self-center text-center">
+                <div class="card-body">
+                  <img class="mr-4" src="../../assets/shopping-cart.svg" width="100px" />
+                  <h4 class="mt-4">Su carrito está vacío</h4>
+                  <a class="btn border-dark mt-4 p-3" (click)="desactivarCarrito()"
+                    ><span style="font-weight: 800"
+                      >Agregar productos al carrito</span
+                    ></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <div *ngIf="venta.items.length > 0">
+            <div class="row">
+              <div class="mb-4 col-md-7">
+                <div class="col-sm-12 p-0" *ngFor="let item of venta.items">
+                  <div class="card">
+                    <div class="row no-gutters">
+                      <div class="col-md-12">
+                        <button
+                          class="btn btn-danger bg-opacity-75 text-white float-end mt-2 me-2 d-flex justify-content-center align-self-center"
+                          (click)="eliminarCartItem(item)"
+                          style="cursor: pointer"
+                        >X</button>
+                        <div class="card-body">
+                          <h5 class="card-title fw-bolder">
+                            {{ item.cantidad }}x {{ item.producto.nombreProducto }}
+                          </h5>
+                          <p class="card-text">{{ item.producto.descripcion }}</p>
+                        </div>
+                        <div class="float-start form-group  ms-4 d-flex mb-2">
+                          <button
+                          class="btn bg-danger bg-opacity-50 d-flex justify-content-center text-white"
+                            (click)="bajarCantidad(item)"
+                            style="cursor: pointer; width: 30px; height: 30px; line-height: 11px; font-size: 15px;font-weight: 700;"
+                          >-</button>
+                          <span class="mx-2">{{ item.cantidad }}</span>
+                          <button
+                          class="btn bg-success bg-opacity-50 d-flex justify-content-center text-white"
+                            (click)="aumentarCantidad(item)"
+                            style="cursor: pointer; width: 30px; height: 30px; line-height: 11px; font-size: 15px; font-weight: 700;"
+                          >+</button>
+                        </div>
+                        <p class="float-end fw-bolder mb-2 me-2">
+                          {{ item.cantidad * item.producto.precio | currency: "$" }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <span style="font-weight: 700"
+                      >{{ venta.items.length }} ARTÍCULOS
+                      <span class="float-right">{{
+                        venta.calcularImporteFinal() | currency: "$"
+                      }}</span></span
+                    >
+                  </li>
+                  <button (click)="activarFormulario()"
+                    class="btn btn-block text-white bg-danger bg-opacity-50 my-2"
+                  >
+                    <span style="font-weight: 800">Realizar pago</span>
+                  </button>
+                  <a class="btn border-dark btn-block" (click)="desactivarCarrito()"
+                    ><span style="font-weight: 800" >Agregar más productos</span></a
+                  >
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+      
+  </div>
+
+
+<div *ngIf="!carritoActivo">
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true" style="width: 80%; margin: auto;">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner text-center px-5 mt-4">
+          <div class="carousel-item active  " style="background-color: #ffe2e2">
+            <img src="../../../assets/BANNER1.png" class="" style="width: 50%;" alt="...">
+          </div>
+          <div class="carousel-item" style="background-color: #ff5757">
+            <img src="../../../assets/BANNER2.png" class="" style="width: 50%;" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+<div class="container my-4">
+    <div class="row col-12 col-md-12 col-lg-12 mx-0 px-0 pb-3 text-center">
+        <div class="col-12 col-sm-12 col-md-3 py-1">
+            <div class="">
+              <a class="btn btn-block btn-light"  (click)="seleccionarTodos()"><h6 class="font-titulos mt-1">Todos</h6> </a>
+
+            </div> 
+      </div>
+        <div class="col-12 col-sm-12 col-md-2 py-1" *ngFor="let categoria of categorias">
+            <div class="">
+              <a class="btn btn-block btn-light"  (click)="productosPorCategoria(categoria)"><h6 class="font-titulos mt-1">{{categoria.nombre}}</h6> </a>
+
+            </div> 
+      </div>
+      </div>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" *ngFor="let producto of productos">
+          <div class="card" >
+            <img [src]="producto.imagen" class="card-img-top"  style="width: 80%; margin: auto;" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{producto.nombreProducto}}</h5>
+              <p class="card-text">{{producto.descripcion}}</p>
+              <button class="btn bg-danger bg-opacity-50 d-grid text-white w-100" (click)="seleccionarProducto(producto)">Seleccionar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+      
+    
+</div>    
