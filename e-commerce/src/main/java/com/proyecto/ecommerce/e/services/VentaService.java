@@ -11,7 +11,5 @@ public interface VentaService {
 
     List<Categoria> listarCategorias();
 
-    List<Producto> listarProductos();
-
     void realizarVenta(Venta venta);
 }

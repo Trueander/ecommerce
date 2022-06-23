@@ -1,5 +1,6 @@
 package com.proyecto.ecommerce.e.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class Categoria {
     @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoria_id")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "categoria")
+    @JsonIgnoreProperties({"categoria", "hibernateLazyInitializer", "handler"})
     private List<Producto> productos;
 }

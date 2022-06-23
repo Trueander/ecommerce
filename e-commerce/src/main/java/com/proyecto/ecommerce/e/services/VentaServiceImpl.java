@@ -21,10 +21,6 @@ public class VentaServiceImpl implements VentaService {
         return ventaRepo.listarCategorias();
     }
 
-    @Override
-    public List<Producto> listarProductos() {
-        return ventaRepo.listarProductos();
-    }
 
     @Override
     public void realizarVenta(Venta venta) {

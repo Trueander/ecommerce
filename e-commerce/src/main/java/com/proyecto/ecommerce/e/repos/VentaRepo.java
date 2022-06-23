@@ -12,8 +12,4 @@ public interface VentaRepo extends CrudRepository<Venta, Long> {
 
     @Query("FROM Categoria")
     List<Categoria> listarCategorias();
-
-    @Query("FROM Producto ")
-    List<Producto> listarProductos();
-
 }
