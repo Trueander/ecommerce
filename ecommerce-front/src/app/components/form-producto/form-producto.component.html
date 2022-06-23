@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="navbar-brand"><img src="../../../assets/logo.jpg" alt="" width="70px" height="70px"></a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center">
+            <a class="nav-link fw-bold" [routerLink]="['/productos']" style="cursor: pointer">Inicio</a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center">
+            <a class="nav-link fw-bold" [routerLink]="['/dashboard']" style="cursor: pointer">Listar Productos</a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center">
+            <a class="nav-link fw-bold" [routerLink]="['/dashboard/productos/crear']"  style="cursor: pointer">Crear Producto</a>
+          </li>
+          <li class="nav-item d-flex justify-content-center align-items-center">
+            <a class="nav-link fw-bold" [routerLink]="['/dashboard/ventas']" style="cursor: pointer">Ventas</a>
+          </li>
+        </ul>
+        <div class="d-flex" role="search">
+          <button class="btn bg-danger bg-opacity-50 text-white" type="submit" (click)="cerrarSesion()">Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    
+    
+    <div class="card" style="width: 800px; margin: auto;">
+        <div class="card-header bg-white" *ngIf="!producto.idProducto">Crear Producto</div>
+        <div class="card-header bg-white" *ngIf="producto.idProducto">Actualizar Producto</div>
+        <div class="card-body">
+            <ul class="alert alert-danger" *ngIf="errores.length > 0">
+                <li *ngFor="let error of errores" class="ms-2">{{ error }}</li>
+            </ul>
+    
+            <form>
+                <div class="form-group row mb-3">
+                    <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" [(ngModel)]="producto.nombreProducto" name="nombre">
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label for="precio" class="col-form-label col-sm-2">Precio</label>
+                    <div class="col-sm-8">
+                        <input type="number" min="0" class="form-control" [(ngModel)]="producto.precio" name="precio">
+                        <div class="text-danger" *ngIf="producto.precio < 0">
+                            El monto no puede ser menor que 0.
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-group row mb-3">
+                    <label for="descripcion" class="col-form-label col-sm-2">Url imagen</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" [(ngModel)]="producto.imagen" name="imagen">
+                    </div>
+                </div>
+                <div class="form-group row mb-3">
+                    <label for="descripcion" class="col-form-label col-sm-2">Descripción</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" [(ngModel)]="producto.descripcion" name="descripcion">
+                    </div>
+                </div>
+    
+                <div class="form-group row mb-3">
+                    <label for="tipoProducto" class="col-form-label col-sm-2">Categoría</label>
+                    <div class="col-sm-8">
+                        <select [compareWith]="compararCategoria" [(ngModel)]="producto.categoria" class="form-control" name="tipoProducto">
+                            <option [ngValue]="undefined">--- Seleccionar una categoría ---</option>
+                            <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{ categoria.nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col-sm-8">
+                        <button *ngIf="!producto.idProducto" class="btn bg-danger bg-opacity-50 text-white" (click)="crear()">Crear</button>
+                        <button *ngIf="producto.idProducto" class="btn bg-danger bg-opacity-50 text-white" (click)="actualizar()">Actualizar</button>
+                    </div>
+                </div>
+            </form>
+    
+        </div>
+    </div>
+    </div>

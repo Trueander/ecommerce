@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh">
+    <div style="width: 500px;" class="bg-danger bg-opacity-25 p-5 rounded-1">
+        <h2 class="text-center text-white mb-5">Ingresar al sistema</h2>
+        <form autocomplete="off">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" [(ngModel)]="usuario" id="floatingInput" placeholder="usuario" autocomplete="nope" name="uSu4ri0">
+                <label for="floatingInput">Usuario</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" class="form-control" [(ngModel)]="password" id="floatingPassword" placeholder="Contraseña" autocomplete="new-password" name="contr4S3na">
+                <label for="floatingPassword">Contraseña</label>
+              </div>
+              <button class="btn mt-4 w-100 text-white" style="background-color: #f27474" (click)="login()">Ingresar</button>
+        </form>
+        
+    </div>
+</div>
+
