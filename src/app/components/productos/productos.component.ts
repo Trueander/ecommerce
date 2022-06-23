@@ -23,11 +23,14 @@ export class ProductosComponent implements OnInit {
   
   carritoActivo: boolean = false;
   formActivo: boolean = false;
+  loginActivo: any
 
   constructor(private ventaService: VentaService) { }
 
   ngOnInit(): void {
     this.venta.pais= 'México';
+
+    this.loginActivo = window.sessionStorage.getItem('LOGIN');
     
     this.ventaService.obtenerProductos()
         .subscribe(response => {
@@ -134,6 +137,7 @@ export class ProductosComponent implements OnInit {
   activarFormulario() {
     this.formActivo = true;
   }
+
 
   realizarVenta() {
 

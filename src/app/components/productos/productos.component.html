@@ -2,6 +2,9 @@
     <div class="container-fluid">
       <a class="navbar-brand"><img src="../../../assets/logo.jpg" alt="" width="70px" height="70px"></a>
       <div class="d-flex" role="search">
+        <li class="nav-item d-flex justify-content-center align-items-center me-3" *ngIf="loginActivo">
+          <a class="nav-link fw-bold" [routerLink]="['/dashboard']" style="cursor: pointer">Administrador</a>
+        </li>
         <button class="btn bg-danger bg-opacity-50 text-white" (click)="activarCarrito()" type="submit"><img src="../../../assets/shopping-cart.svg" class="me-2" alt="">{{venta.items.length}}</button>
       </div>
     </div>
@@ -32,23 +35,25 @@
         <div class="col-sm-6" >
           <input type="text" class="form-control" name="empresaDestino" [(ngModel)]="venta.empresaDestino" >
         </div>
-      </div>
+      </div>      
+
       <div class="form-group row mb-1">
-        <label for="nombre" class="col-sm-5 col-form-label">Calle <span class="text-danger">*</span></label>
-        <div class="col-sm-3" >
-          <input type="text" class="form-control" name="nombnombreCallere" [(ngModel)]="venta.nombreCalle" >
-        </div>
-        <div class="col-sm-3" >
-            <input type="text" class="form-control" name="nombnombreCallere" [(ngModel)]="venta.intCalle" >
-          </div>
-      </div>
-      
-      <div class="form-group row mb-1">
-        <label for="nombre" class="col-sm-5 col-form-label">Número <span class="text-danger">*</span></label>
+        <label for="nombre" class="col-sm-5 col-form-label">Nombre de calle <span class="text-danger">*</span></label>
         <div class="col-sm-6" >
+          <input type="text" class="form-control" name="nombreCalle" [(ngModel)]="venta.nombreCalle" >
+        </div>
+      </div>
+
+      <div class="form-group row mb-1">
+        <label for="nombre" class="col-sm-5 col-form-label">Número de calle <span class="text-danger">*</span></label>
+        <div class="col-sm-3" >
           <input type="text" class="form-control" name="numeroCalle" [(ngModel)]="venta.numeroCalle" >
         </div>
+        <div class="col-sm-3" >
+            <input type="text" class="form-control" name="intCalle" placeholder="Int calle" [(ngModel)]="venta.intCalle" >
+          </div>
       </div>
+
       <div class="form-group row mb-1">
         <label for="nombre" class="col-sm-5 col-form-label">Referencia</label>
         <div class="col-sm-6" >
