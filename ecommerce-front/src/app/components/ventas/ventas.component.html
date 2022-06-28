@@ -1,57 +1,98 @@
 <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="navbar-brand"><img src="../../../assets/logo.jpg" alt="" width="70px" height="70px"></a>
-          </li>
-          <li class="nav-item d-flex justify-content-center align-items-center">
-            <a class="nav-link fw-bold" [routerLink]="['/productos']" style="cursor: pointer">Inicio</a>
-          </li>
-          <li class="nav-item d-flex justify-content-center align-items-center">
-            <a class="nav-link fw-bold" [routerLink]="['/dashboard']" style="cursor: pointer">Listar Productos</a>
-          </li>
-          <li class="nav-item d-flex justify-content-center align-items-center">
-            <a class="nav-link fw-bold" [routerLink]="['/dashboard/productos/crear']"  style="cursor: pointer">Crear Producto</a>
-          </li>
-          <li class="nav-item d-flex justify-content-center align-items-center">
-            <a class="nav-link fw-bold" [routerLink]="['/dashboard/ventas']" style="cursor: pointer">Ventas</a>
-          </li>
-        </ul>
-        <div class="d-flex" role="search">
-          <button class="btn bg-danger bg-opacity-50 text-white" type="submit" (click)="cerrarSesion()">Cerrar sesión</button>
-        </div>
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="navbar-brand"><img src="../../../assets/logo.jpg" alt="" width="70px" height="70px"></a>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <a class="nav-link fw-bold" [routerLink]="['/productos']" style="cursor: pointer">Inicio</a>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <a class="nav-link fw-bold" [routerLink]="['/dashboard']" style="cursor: pointer">Listar Productos</a>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <a class="nav-link fw-bold" [routerLink]="['/dashboard/productos/crear']"  style="cursor: pointer">Crear Producto</a>
+        </li>
+        <li class="nav-item d-flex justify-content-center align-items-center">
+          <a class="nav-link fw-bold" [routerLink]="['/dashboard/ventas']" style="cursor: pointer">Ventas</a>
+        </li>
+      </ul>
+      <div class="d-flex" role="search">
+        <button class="btn bg-danger bg-opacity-50 text-white" type="submit" (click)="cerrarSesion()">Cerrar sesión</button>
       </div>
     </div>
+  </div>
 </nav>
 
 <div class="container mt-5">
-    <h2 style="color: #707071">Ventas</h2>
-    <table class="table table-hover mb-5" style="color: #707071; border:1px solid #f6ccd0">
-      <thead class="bg-danger bg-opacity-25">
-        <tr>
-          <th>Cliente</th>
-          <th>Teléfono</th>
-          <th>Ciudad</th>
-          <th>Estado</th>
-          <th>Calle</th>
-          <th>Cantidad prod</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let venta of ventas">
-          <td>{{venta.nombresCliente}} {{venta.apellidosCliente}}</td>
-          <td>{{venta.telefonoCliente}}</td>
-          <td>{{venta.ciudad}}</td>
-          <td>{{venta.estado}}</td>
-          <td>{{venta.nombreCalle}}</td>
-          <td>{{venta.items.length}}</td>
-          <td>{{venta.total | currency: "$"}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <h2 style="color: #707071">Ventas</h2>
+
+  <table class="table table-sm mt-3">
+    <div class="card p-2">
+      <div class="row fw-bold">
+        <div class="col ms-4">
+          <span class="font-weight-bold">Nombre Cliente</span>
+        </div>
+      <div class="col">
+        <span class="font-weight-bold text-center">Ciudad</span>
+      </div>
+      <div class="col">
+        <span class="font-weight-bold text-center">Estado</span>
+      </div>
+      <div class="col">
+        <span class="font-weight-bold text-center">Cantidad</span>
+      </div>
+      <div class="col">
+        <span class="font-weight-bold text-center">Total</span>
+      </div>
+      <div class="col">
+       <span class="float-right mr-2 font-weight-bold">Detalle pedido</span>
+      </div>
+    </div>
+    </div>
+
+    <tbody >
+      <tr *ngFor="let venta of ventas; let i = index">
+      <div class="card p-2">
+          <div class="row ">
+            <div class="col ms-3">
+              <span class="">{{venta.nombresCliente}}</span>
+            </div>
+          <div class="col">
+            <span class=" text-center">{{venta.ciudad}}</span>
+          </div>
+          <div class="col">
+            <span class=" text-center">{{venta.estado}}</span>
+          </div>
+          <div class="col">
+            <span class=" text-center">{{venta.items.length}}</span>
+          </div>
+          <div class="col">
+            <span class=" text-center">{{venta.total | currency: "$"}}</span>
+          </div>
+          <div class="col">
+            <a class="btn btn-light btn-sm  float-right font-weight-bold" href="#xd{{i}}" data-bs-toggle="collapse" aria-expanded="false" >Detalle</a>
+          </div>
+        </div>
+
+          
+        <ul class="list-group list-group-flush ml-4 collapse list-unstyled mt-2"  id="xd{{i}}">
+          <li class="list-group-item font-italic pl-1 d-flex" *ngFor="let item of venta.items">
+            <span style="width: 20%;">{{item.cantidad}}x {{item.producto.nombreProducto}}</span>
+            <div style="width: 20%">
+              <img [src]="item.producto.imagen" width="70px">
+            </div>
+            
+          </li>
+          
+        
+        </ul>
+      </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
